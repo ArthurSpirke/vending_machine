@@ -17,4 +17,8 @@ class ProductBatch
     @amount = amount - 1
   end
 
+  def in_stock?
+    amount > 0
+  end
+
 end

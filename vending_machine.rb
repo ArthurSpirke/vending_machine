@@ -5,7 +5,6 @@ class VendingMachine
   def initialize(product_batches = [])
     @product_batches = product_batches
     @current_session = nil
-    show_help
   end
 
   def purchase(product_name)
@@ -48,24 +47,16 @@ class VendingMachine
     end
   end
 
-  def show_state
-    InfoScreen.show_session_state(current_session)
-  end
-
-  def show_machine_state
-    InfoScreen.show_the_machine_state(self)
-  end
-
-  def show_help
-    InfoScreen.show_help_info
-  end
-
   def products
     @products ||= begin
       product_batches.map do |product_batch|
         [product_batch.product.name, product_batch]
       end.to_h
     end
+  end
+
+  def current_session_active?
+    !current_session.nil?
   end
 
   private
